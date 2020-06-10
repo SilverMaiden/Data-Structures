@@ -1,7 +1,6 @@
 """
 A queue is a data structure whose primary purpose is to store and
 return elements in First In First Out order.
-
 1. Implement the Queue class using an array as the underlying storage structure.
    Make sure the Queue tests pass.
 2. Re-implement the Queue class, this time using the linked list implementation
@@ -13,42 +12,40 @@ return elements in First In First Out order.
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
 """
-import singly_linked_list
-
-myList = singly_linked_list.LinkedList()
-myList.headval = singly_linked_list.Node("Apple")
-
-node2 = singly_linked_list.Node("Banana")
-node3 = singly_linked_list.Node("Carrot")
-node4 = singly_linked_list.Node("Durian")
+from singly_linked_list import LinkedList
 
 
-class Queue:
+class LLQueue:
     def __init__(self):
         self.size = 0
-        self.storage = []
+        # 1. use array as storage
+        # self.storage = []
+        # 2. use LinkedList as storage
+        self.storage = LinkedList()
 
     def __len__(self):
-        print(self.size)
+        return self.size
 
     def enqueue(self, value):
-        self.storage.append(value)
+        # 1. use array as storage
+        # self.storage.append(value)
+        # self.size += 1
+        # 2. use LinkedList as storage
         self.size += 1
-        print(self.storage)
+        self.storage.add_to_tail(value)
 
     def dequeue(self):
-        self.storage.pop(0)
-        self.size -= 1
-        print(self.storage)
-
-
-myQueue = Queue()
-
-myQueue.enqueue(3)
-myQueue.enqueue('f')
-myQueue.enqueue("*")
-
-
-myQueue.dequeue()
-myQueue.dequeue()
-myQueue.dequeue()
+        # 1. use array as storage
+        # if self.size == 0:
+        #     return None
+        # else:
+        #     value = self.storage[0]
+        #     self.storage.remove(value)
+        #     self.size -= 1
+        #     return value
+        # 2. use LinkedList as storage
+        if self.size == 0:
+            return None
+        else:
+            self.size -= 1
+            return self.storage.remove_head()
